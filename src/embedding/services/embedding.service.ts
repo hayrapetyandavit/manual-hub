@@ -15,6 +15,6 @@ export class EmbeddingService {
   }
 
   async embedMany(texts: string[]): Promise<number[][]> {
-    return this.provider.embedMany(texts);
+    return Promise.all(texts.map((text) => this.provider.embed(text)));
   }
 }
